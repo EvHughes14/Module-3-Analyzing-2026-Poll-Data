@@ -1,0 +1,24 @@
+#Create the three data variables: Name, ABC_Poll, and CBS_Poll. Then, combine all three into a dataframe called df_polls 
+Name <- c("Jeb", "Donald", "Ted", "Marco", "Carly", "Hillary", "Bernie")
+ABC_poll   <- c(  4,      62,      51,    21,      2,        14,       15)
+CBS_poll   <- c( 12,      75,      43,    19,      1,        21,       19)
+df_polls <- data.frame(Name, ABC_poll, CBS_poll)
+
+#Use str() to show the aspects of df_polls and then use head to output the organized data for the first columns
+str(df_polls)
+head(df_polls)
+
+#Print the mean, median and range to get a better handle of the data
+mean(df_polls$ABC_poll)
+#24.14286
+median(df_polls$CBS_poll)
+#19
+range(df_polls[, c("ABC_poll","CBS_poll")])
+#1-75
+
+#Use $ to add the 'Diff' column, which subtracts the amount of CBS polls from ABC
+df_polls$Diff <- df_polls$CBS_poll - df_polls$ABC_pol
+
+#Utilize the ggplot2 function geom_col to plot the nsames and their discrepnacies on a bar chart.
+ggplot(df_polls, aes(x= Name, y = Diff)) +
+  geom_col()
